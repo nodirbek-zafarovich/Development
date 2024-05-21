@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaCcPaypal } from "react-icons/fa";
 import { SiCocacola } from "react-icons/si";
 import { FaVimeoSquare } from "react-icons/fa";
@@ -14,37 +14,140 @@ import Financial from "../../public/assets/financial_times.svg";
 import Aws from "../../public/assets/aws.svg";
 import GBE from "../../public/assets/GBE.svg";
 import Staive from "../../public/assets/Stevie.svg";
+import Image1 from "../../public/assets/image1.jpg";
+import Image2 from "../../public/assets/image2.jpg";
+import Image3 from "../../public/assets/image3.jpg";
+import Image4 from "../../public/assets/image4.jpg";
+import Slide from "./Slide";
 
 const Hero = () => {
+  const [slide, setSlide] = useState(1);
+  const slideTitles = {
+    1: "Engineering peace of mind",
+    2: "International Invention Day",
+    3: "AI innovation",
+    4: "Expert software development",
+  };
+
+  const slideBtn = {
+    1: "Get an setimate",
+    2: "Enter the contest",
+    3: "Read the repot",
+    4: "Schedule a call",
+  };
+  const slideImg = [Image1, Image1, Image2, Image3, Image4];
+
+  const slideContent = {
+    1: "Vention developers partner with innovative companies from startups to Fortune 500s, lending the AI engineering expertise to propel them to new heights and the edge to outpace the competition.",
+    2: "On May 16, Vention kicks off International Invention Day, celebrating human creativity and game-changing inventions. Until June 30, you’ll also have a chance to join the In:Vention Incubator and win 12 weeks of our top-tier services worth $150K USD in in-house software development.",
+    3: "As pioneers in AI engineering, we view it as more than a shiny tool: it's a pillar of the new business normal. Those companies that embrace and leverage AI will set the standard and lead in their category. In our new State of AI report, we look at funding, investment, and valuation trends across the AI market.",
+    4: "Get it done right — the first time. Our proven software expertise and engagement flexibility mean you don’t have to worry about timelines, processes, or outcomes. Proficient in web, mobile, cloud, and advanced tech like AI and VR, we empower you to innovate and grow your business at the scale and speed of future trends.",
+  };
+
+  const slideBg = {
+    1: "bg-[#ff6a47]",
+    2: "bg-[#ff6fff]",
+    3: "bg-[#ff6a47]",
+    4: "bg-[#3155ff]",
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSlide((prevSlide) => (prevSlide % 4) + 1);
+    }, 4000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <div className="container mx-auto">
-      <div className="flex flex-col lg:flex-row bg-white p-8">
-        <div className="flex-1">
-          <h1 className="text-4xl font-bold text-blue-600">
-            Expert software development
-          </h1>
-          <p className="mt-4 text-lg text-gray-700">
-            Get it done right — the first time. Our proven software expertise
-            and engagement flexibility mean you don't have to worry about
-            timelines, processes, or outcomes. Proficient in web, mobile, cloud,
-            and advanced tech like AI and VR, we empower you to innovate and
-            grow your business at the scale and speed of future trends.
-          </p>
-          <div>
-            <button className="bg-blue-500 w-[200px] h-[50px] mt-[20px] rounded-xl hover:bg-pink-900 ease-linear duration-500 hover:text-white hover:font-bold  font-semibold">
-              Read the report
-            </button>
+      <div className=" px-[30px] container mx-auto mt-[20px]  pb-[60px] border-b ">
+        <div className="grid grid-cols-2 h-[200px] ">
+          <div className={` ${slideBg[slide]} grid items-center dropDown  `}>
+            <h1 className=" text-[70px] leading-[90%] pl-[30px] dropDown ">
+              {slideTitles[slide]}
+            </h1>
+          </div>
+          <div className="flex items-end justify-end pb-[20px] ">
+            <ul className="flex w-[400px] justify-between gap-5 ">
+              <li
+                onClick={() => setSlide(1)}
+                className={`text-[22px] cursor-pointer dropDown ${
+                  slide == 1
+                    ? " border-[#39175b] text-[#39175b] grow"
+                    : "border-[#d2d2d5] text-[#d2d2d5]"
+                }  font-semibold p-2   border-t-[3px] `}
+              >
+                01
+              </li>
+              <li
+                onClick={() => setSlide(2)}
+                className={`text-[22px] cursor-pointer dropDown ${
+                  slide == 2
+                    ? " border-[#39175b] text-[#39175b] grow"
+                    : "border-[#d2d2d5] text-[#d2d2d5]"
+                }  font-semibold p-2  border-t-[3px] `}
+              >
+                02
+              </li>
+              <li
+                onClick={() => setSlide(3)}
+                className={`text-[22px] cursor-pointer dropDown ${
+                  slide == 3
+                    ? " border-[#39175b] text-[#39175b] grow"
+                    : "border-[#d2d2d5] text-[#d2d2d5]"
+                }  font-semibold p-2  border-t-[3px] `}
+              >
+                03
+              </li>
+              <li
+                onClick={() => setSlide(4)}
+                className={`text-[22px] cursor-pointer dropDown ${
+                  slide == 4
+                    ? " border-[#39175b] text-[#39175b] grow"
+                    : "border-[#d2d2d5] text-[#d2d2d5]"
+                }   font-semibold p-2  border-t-[3px] `}
+              >
+                04
+              </li>
+            </ul>
           </div>
         </div>
-        <div className="flex-1 mt-8 lg:mt-0 lg:ml-8">
-          <img
-            src="https://ventionteams.com/_next/image?url=https%3A%2F%2Fventionteams.com%2Fmedia%2Foriginal_images%2FCustom_software_development_03-2.jpg&w=900&q=75"
-            alt="Abstract tech image"
-            className="w-full h-auto"
-          />
+
+        <div className="grid grid-cols-2 h-[520px] ">
+          <div className="flex flex-col justify-end items-end pr-[20px] pb-[30px] ">
+            <div className=" max-w-[400px] ">
+              <p className="mb-[50px] text-[22px] leading-7 font-thin ">
+                {slideContent[slide]}
+              </p>
+              <button
+                className={`w-full flex p-[20px] justify-between items-center h-[70px] ${slideBg[slide]} hover:bg-[#52002d] hover:text-white dropDown `}
+              >
+                <span className="text-[28px] font-medium ">
+                  {slideBtn[slide]}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div className="pb-[30px] relative overflow-hidden ">
+            <Slide slide={slide} setSlide={setSlide}>
+              {slideImg.map((item) => (
+                <img
+                  src={item}
+                  alt="image"
+                  className=" max-h-[500px] w-full min-h-[500px] relative z-0 "
+                />
+              ))}
+            </Slide>
+
+            <div className="w-[450px] h-[200px] skew-x-[-45deg] bg-white bottom-0 right-[-100px]  absolute">
+              {" "}
+            </div>
+          </div>
         </div>
       </div>
-      <div>
+      <div className="border-l border-b py-[30px]">
         <hr class="h-px  my-8 bg-gray-200 border-0 dark:bg-gray-300"></hr>
         <h1 className="text-4xl font-semibold mt-[180px] mx-[100px]">
           With 20+ years of providing software development services for
@@ -58,43 +161,49 @@ const Hero = () => {
         </p>
         <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-300"></hr>
       </div>
-      <div className="mx-[110px] flex gap-[650px] items-center">
-        <h1 className="text-3xl font-semibold text-pink-900">Key Stats</h1>
-        <div className="flex gap-[150px]">
-          <span className="text-pink-900 text-8xl font-sans">500+</span>
-          <span className="text-pink-900 text-8xl font-sans">$15B+</span>
+      <div className="border-l border-b py-[30px]">
+        <div className="mx-[110px] flex gap-[650px] items-center">
+          <h1 className="text-3xl font-semibold text-pink-900">Key Stats</h1>
+          <div className="flex gap-[150px]">
+            <span className="text-pink-900 text-8xl font-sans">500+</span>
+            <span className="text-pink-900 text-8xl font-sans">$15B+</span>
+          </div>
+        </div>
+        <div className="flex ml-[830px] mt-[20px] mb-[40px] ">
+          <h1 className="text-xl">award-winning clients</h1>
+          <h1 className="ml-[190px] text-xl">in client acquisitions</h1>
         </div>
       </div>
-      <div className="flex ml-[830px] mt-[20px] mb-[40px] ">
-        <h1 className="text-xl">award-winning clients</h1>
-        <h1 className="ml-[190px] text-xl">in client acquisitions</h1>
-      </div>
-      <div className="flex gap-[260px] mx-[100px] w-full ">
-        <span className="text-7xl text-pink-900 font-sans">36</span>
-        <span className="text-7xl text-pink-900 font-sans">20+</span>
-        <div className="flex gap-[250px]">
+      <div className="border-l border-b py-[30px]">
+        <div className="flex gap-[260px] mx-[100px] w-full  ">
+          <span className="text-7xl text-pink-900 font-sans">36</span>
           <span className="text-7xl text-pink-900 font-sans">20+</span>
-          <span className="text-7xl text-pink-900 font-sans">3K+</span>
+          <div className="flex gap-[250px]">
+            <span className="text-7xl text-pink-900 font-sans">20+</span>
+            <span className="text-7xl text-pink-900 font-sans">3K+</span>
+          </div>
+        </div>
+        <div className="flex gap-[90px] mx-[100px] my-[40px]">
+          <span className="text-xl font-sans">month average engagement</span>
+          <span className="text-xl font-sans">client IPOs supported</span>
+          <div className="ml-[110px] flex gap-[200px]">
+            <span className="text-xl font-sans">years of experience</span>
+            <span className="text-xl font-sans">world-class engineers</span>
+          </div>
         </div>
       </div>
-      <div className="flex gap-[90px] mx-[100px] my-[40px]">
-        <span className="text-xl font-sans">month average engagement</span>
-        <span className="text-xl font-sans">client IPOs supported</span>
-        <div className="ml-[110px] flex gap-[200px]">
-          <span className="text-xl font-sans">years of experience</span>
-          <span className="text-xl font-sans">world-class engineers</span>
+     
+      <div className="border-l border-b py-[30px]">
+        <div className="my-[60px] mx-[100px]">
+          <h1 className="text-6xl font-semibold">Trusted by the best</h1>
+          <p className="mt-[50px] text-xl ">
+            Companies ranging from early-stage startups to Fortune 500
+            enterprises partner with us to develop game-changing growth
+            solutions.
+          </p>
         </div>
       </div>
-      <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-300"></hr>
-      <div className="my-[60px] mx-[100px]">
-        <h1 className="text-6xl font-semibold">Trusted by the best</h1>
-        <p className="mt-[50px] text-xl ">
-          Companies ranging from early-stage startups to Fortune 500 enterprises
-          partner with us to develop game-changing growth solutions.
-        </p>
-      </div>
-      <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-300"></hr>
-      <div className="border-l border-b py-[30px] ">
+        <div className="border-l border-b py-[30px] ">
         <marquee direction="left">
           <div className="flex w-full justify-between items-center gap-[100px] ">
             <img

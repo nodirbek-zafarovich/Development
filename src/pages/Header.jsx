@@ -1,33 +1,137 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from "react";
+import { IoChevronDownOutline } from "react-icons/io5";
+import { GoGlobe } from "react-icons/go";
+import { GoArrowRight } from "react-icons/go";
+import Input1 from "./Input1";
+import Input2 from "./Input2";
 
 const Header = () => {
-  return (
-    <header className="bg-white  container mx-auto">
-    <div className=" flex my-6 gap-[880px] w-full items-center ">
-      <NavLink to="/" className="text-2xl font-bold text-black">
-        Vention
-      </NavLink>
-      <nav className=" flex gap-[30px] items-center">
-          <select name="What we do" id="2" className='outline-none hover:text-blue-500'>
-            <option value="What we do">
-            What we do
-            </option>
-          </select>
-        <NavLink to="/portfolio" className="text-gray-700 hover:text-blue-500" activeClassName="underline">Portfolio</NavLink>
-        <NavLink to="/insights" className="text-gray-700 hover:text-blue-500" activeClassName="underline">Insights</NavLink>
-        <NavLink to="/about-us" className="text-gray-700 hover:text-blue-500" activeClassName="underline">
-          <select name="About us" id="2">
-            <option value="About us">
-            About us
-            </option>
-          </select>
-        </NavLink>
-        <NavLink to="/contact-us" className="text-gray-700 hover:text-white hover:bg-pink-900 ease-linear duration-1000  bg-orange-500 py-2 px-4 rounded" activeClassName="underline">Contact us</NavLink>
-      </nav>
-    </div>
-  </header>
-  );
+    const [mouse, setMouse] = useState(false);
+    const [about, setAbout] = useState(false);
+    const [globe, setGlobe] = useState(false);
+
+    const hendleGlobeEnter = () => {
+        setGlobe();
+    };
+    const hendleGlobeLeave = () => {
+        setGlobe(false);
+    };
+
+    const hendleMouseEnter = () => {
+        setMouse(true);
+    };
+    const hendleMouseLeave = () => {
+        setMouse(false);
+    };
+
+    const hendleEnterAbout = () => {
+        setAbout(true);
+    };
+    const hendleLeaveAbout = () => {
+        setAbout(false);
+    };
+
+    return (
+        <div className="relative">
+            <nav className="flex container bg-white relative mx-auto pl-[30px]  z-20 justify-between items-center border-b ">
+                <div>
+                  <h1 className="text-xl font-semibold">vention</h1>
+                </div>
+
+                <div className="flex items-center border-l ">
+                    <ul className="flex items-center gap-[115px] ">
+                        <li
+                            onMouseEnter={hendleMouseEnter}
+                            onMouseLeave={hendleMouseLeave}
+                            className=" cursor-pointer flex items-center py-4 gap-1 text-[18px] px-6 relative"
+                        >
+                            <span
+                                className={` ${
+                                    mouse ? "block" : "hidden"
+                                } transition-all w-[110%] h-[3px] left-0 absolute bottom-[-2px] bg-black`}
+                            ></span>
+                            <span className="hover:text-[#52002d] transition-all">
+                                What we do
+                            </span>{" "}
+                            <IoChevronDownOutline
+                                className={` ${
+                                    mouse ? "rotate-180" : null
+                                } transition-all `}
+                            ></IoChevronDownOutline>
+                        </li>
+                        <li className=" cursor-pointer transition-all hover:text-[#52002d] text-[18px] py-4 ">
+                            Portfolio
+                        </li>
+                        <li className=" cursor-pointer transition-all hover:text-[#52002d] text-[18px] py-4 ">
+                            Insights
+                        </li>
+                        <li
+                            onMouseEnter={hendleEnterAbout}
+                            onMouseLeave={hendleLeaveAbout}
+                            className=" cursor-pointer flex relative items-center px-6 text-[18px] py-4 gap-1"
+                        >
+                            <span
+                                className={` block w-[100%] h-[3px]  ${
+                                    about ? "block" : "hidden"
+                                } left-0 absolute bottom-[-2px] bg-black`}
+                            ></span>
+                            <span className="hover:text-[#52002d] transition-all">
+                                About us
+                            </span>{" "}
+                            <IoChevronDownOutline
+                                className={`${
+                                    about ? "rotate-180" : null
+                                } transition-all `}
+                            ></IoChevronDownOutline>
+                        </li>
+                    </ul>
+                    <button className="text-[18px] py-4 px-6 bg-[#ff6a47] transition-all hover:bg-[#52002d] hover:text-white ">
+                        Contact us
+                    </button>
+                    <div
+                        onMouseEnter={hendleGlobeEnter}
+                        onMouseLeave={hendleGlobeLeave}
+                        className=" px-12 relative z-40 "
+                    >
+                        <span className="bg-[#ff6a47] transition-all globe-dot rounded-full w-2 h-2 absolute top-[-5px] right-[35%] "></span>
+                        <GoGlobe className="text-[24px]"></GoGlobe>
+                    </div>
+                </div>
+            </nav>
+
+            <div
+                onMouseEnter={hendleGlobeEnter}
+                onMouseLeave={hendleGlobeLeave}
+                className={` ${
+                    globe ? "bottom-[-135px]" : " bottom-[0px] "
+                } absolute bg-white z-0 w-[200px] dropDown  flex flex-col gap-3 right-0 border pr-[30px] pl-2 py-[20px]`}
+            >
+                <div className="flex cursor-pointer items-center gap-2">
+                    <GoArrowRight />
+                    <p className="hover:text-[#52002d] font-medium transition-all " >US & Worldwide</p>
+                </div>
+                <div className="flex cursor-pointer items-center gap-2">
+                    <GoArrowRight />
+                    <p className="hover:text-[#52002d] font-medium transition-all ">UK</p>
+                </div>
+                <div className="flex cursor-pointer items-center gap-2">
+                    <GoArrowRight />
+                    <p className="hover:text-[#52002d] font-medium transition-all ">Dach</p>
+                </div>
+            </div>
+
+            <Input1
+                mouse={mouse}
+                hendleMouseLeave={hendleMouseLeave}
+                hendleMouseEnter={hendleMouseEnter}
+            />
+            <Input2
+                about={about}
+                hendleLeaveAbout={hendleLeaveAbout}
+                hendleEnterAbout={hendleEnterAbout}
+            />
+        </div>
+    );
 };
 
 export default Header;
