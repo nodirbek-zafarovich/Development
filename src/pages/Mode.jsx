@@ -6,7 +6,7 @@ const Mode = ({ isDarkMode, handleToggle }) => {
 
 
   return (
-    <div className="container mx-auto p-4 pl-[1480px]">
+    <div className="container mx-auto p-4 flex justify-end items-end">
       <label className="flex items-center space-x-3 cursor-pointer">
         <div
           className={`relative inline-block w-12 h-6 transition duration-200 ease-linear ${
