@@ -1,23 +1,34 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "./pages/Header";
-import Hero from "./pages/Hero";
-import Features from "./pages/Features";
-import Footer from "./pages/Footer";
+import React, { useState, useEffect } from 'react';
+import Header from './pages/Header';
+import Hero from './pages/Hero';
+import Features from './pages/Features';
+import Footer from './pages/Footer';
+import Mode from './pages/Mode';
 
-function App() {
+const App = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
+  const handleToggle = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
-    <Router>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'} transition-colors duration-500`}>
       <Header />
-      <Routes>
-        <Route path="/" element={<Hero />} />
-        <Route path="/services" element={<Features />} />
-        <Route path="/about" element={<div>About Us</div>} />
-        <Route path="/contact" element={<div>Contact Us</div>} />
-      </Routes>
+      <Mode isDarkMode={isDarkMode} handleToggle={handleToggle} />
+      <Hero />
+      <Features />
       <Footer />
-    </Router>
+    </div>
   );
-}
+};
 
 export default App;

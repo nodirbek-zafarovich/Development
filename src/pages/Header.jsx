@@ -33,7 +33,7 @@ const Header = () => {
 
     return (
         <div className="relative">
-            <nav className="flex container bg-white relative mx-auto pl-[30px]  z-20 justify-between items-center border-b ">
+            <nav className="flex container relative mx-auto pl-[30px]  z-20 justify-between items-center border-b  ">
                 <div>
                   <h1 className="text-xl font-semibold">vention</h1>
                 </div>
@@ -99,26 +99,7 @@ const Header = () => {
                 </div>
             </nav>
 
-            <div
-                onMouseEnter={hendleGlobeEnter}
-                onMouseLeave={hendleGlobeLeave}
-                className={` ${
-                    globe ? "bottom-[-135px]" : " bottom-[0px] "
-                } absolute bg-white z-0 w-[200px] dropDown  flex flex-col gap-3 right-0 border pr-[30px] pl-2 py-[20px]`}
-            >
-                <div className="flex cursor-pointer items-center gap-2">
-                    <GoArrowRight />
-                    <p className="hover:text-[#52002d] font-medium transition-all " >US & Worldwide</p>
-                </div>
-                <div className="flex cursor-pointer items-center gap-2">
-                    <GoArrowRight />
-                    <p className="hover:text-[#52002d] font-medium transition-all ">UK</p>
-                </div>
-                <div className="flex cursor-pointer items-center gap-2">
-                    <GoArrowRight />
-                    <p className="hover:text-[#52002d] font-medium transition-all ">Dach</p>
-                </div>
-            </div>
+           
 
             <Input1
                 mouse={mouse}
