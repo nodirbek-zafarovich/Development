@@ -141,9 +141,7 @@ const Hero = () => {
               ))}
             </Slide>
 
-            <div className="w-[450px] h-[200px] skew-x-[-45deg] bg-white bottom-0 right-[-100px]  absolute">
-              {" "}
-            </div>
+           
           </div>
         </div>
       </div>
